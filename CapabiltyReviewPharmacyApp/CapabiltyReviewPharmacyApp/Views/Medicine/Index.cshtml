@@ -1,0 +1,85 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+@section Scripts
+{
+    <link href="~/Content/bootstrap.min.css" rel="stylesheet" />
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#medicine').mouseover(function () {
+                $('medicine').css('background-color', 'ghostwhite');
+            })
+            $('#medicine').mouseout(function () {
+                $('medicine').css('background-color', 'dimgray');
+            })
+            $('#companies').mouseover(function () {
+                $('companies').css('background-color', 'ghostwhite');
+            })
+            $('#companies').mouseout(function () {
+                $('companies').css('background-color', 'dimgray');
+            })
+            $('#medicine').hover(function () {
+                $('#medicinecat').finish().slideDown('slow');
+            })
+            $('#medicine').hover(function () {
+                $('#companycat').finish().slideUp('fast');
+            })
+            $('#companies').hover(function () {
+                $('#companycat').finish().slideDown('slow');
+            })
+            $('#companies').hover(function () {
+                $('#medicinecat').finish().slideUp('fast');
+            })
+        })
+    </script>
+
+}
+
+
+
+
+<body>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <link href="~/Content/StyleSheet.css" rel="stylesheet" />
+    <style>
+        .box {
+            padding: 10px;
+            width: 15px;
+            background-color: dimgray;
+            word-spacing: 25px
+        }
+    </style>
+    <form>
+        <table>
+            <tr>
+                <span>
+                    <th class="box" id="medicine">Medicines </th>
+
+                </span>
+                <span>
+                    <th class="box" id="companies">Manufacturing Companies </th>
+
+                </span>
+
+            </tr>
+        </table>
+    </form>
+
+    <div id="medicinecat">
+        <div>@Html.ActionLink("Register new medicine", "AddMedicine")</div>
+        <div>@Html.ActionLink("See all medicines", "GetMedicines")</div>
+    </div>
+
+    <div id="companycat">
+        <div>@Html.ActionLink("Register new company", "AddManufacturer")</div>
+        <div>@Html.ActionLink("See all medicines", "GetManufacturingCompanies")</div>
+    </div>
+
+</body>
+<div>@Html.ActionLink("back to home", "Index")</div>

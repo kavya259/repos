@@ -1,0 +1,90 @@
+﻿@*<marquee direction="right"><h4 style="color:darkgreen">Welcome To <span style="color:tomato">BigBazar</span> Admin Page </h4></marquee>*@
+<h4 style="font-family:'Times New Roman', Times, serif"> Admin page-BigBazar</h4>
+@{
+    ViewData["Title"] = "Index";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+<br />
+
+<ins style="color:red">@Html.ActionLink("Back To Login", "Login")</ins>
+<br />
+<br />
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#category").mouseover(function () {
+                $("#category").css('background-color', 'darkcyan');
+
+            })
+            $("#category").mouseout(function () {
+                $("#category").css('background-color', 'cadetblue');
+            })
+            $("#products").mouseover(function () {
+                $("#products").css('background-color', 'darkcyan');
+            })
+
+            $("#products").mouseout(function () {
+                $("#products").css('background-color', 'cadetblue');
+            })
+           
+            $("#category").hover(function () {
+                $("#Categoryview").finish().slideDown('slow');
+            })
+            $("#products").hover(function () {
+                $("#Categoryview").finish().slideUp('slow');
+            })
+            $("#products").hover(function () {
+                $("#Productview").finish().slideDown('slow');
+            })
+            $("#category").hover(function () {
+                $("#Productview").finish().slideUp('slow');
+            })
+        })
+    </script>
+}
+<body style="background-color:burlywood">
+    <style>
+        .box {
+            padding: 40px;
+            width: 15px;
+            line-height:normal;
+            margin: 10px;
+            background-color: darkgray;
+            background-color: cadetblue;
+            word-spacing: 25px;
+        }
+    </style>
+    <form>
+        <table id="tbldata">
+            <tr>
+                <span>
+                    <th class="box" id="category">Category Section</th>
+                </span>
+                <span>
+                    <th class="box" id="products">Products</th>
+                </span>
+               
+
+
+            </tr>
+        </table>
+    </form>
+
+        <div id="Categoryview">
+            <div>@Html.ActionLink("Add new Category ", "AddCategory", "Admin")</div>
+            <div>@Html.ActionLink("view all Categories ", "GetAllCategories", "Admin")</div>
+        </div>
+            <div id="Productview"> @Html.ActionLink("view all Products ", "GetAllProducts", "Admin")</div>
+
+
+        <div >
+            <br> @Html.ActionLink("Back to home page ", "Index", "Home")<br />
+
+        </div>
+
+    </body>

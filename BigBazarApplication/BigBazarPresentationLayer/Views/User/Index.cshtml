@@ -1,0 +1,117 @@
+﻿@*<marquee direction="right"><h4 style="color:darkgreen">Welcome To <span style="color:tomato">BigBazar</span> User Page </h4></marquee>*@
+<h4 style="font-family:'Times New Roman', Times, serif"> User page-BigBazar</h4>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+
+<br />
+
+<ins style="color:red">@Html.ActionLink("Back To Login", "Index", "User")</ins>
+<br />
+<br />
+
+@section scripts
+        {
+    <script>
+        $(document).ready(function () {
+            $("#category").mouseover(function () {
+                $("#category").css('background-color', 'White');
+
+            })
+            $("#category").mouseout(function () {
+                $("#category").css('background-color', 'palevioletred');
+            })
+            $("#product").mouseover(function () {
+                $("#product").css('background-color', 'White');
+            })
+
+            $("#prod").mouseout(function () {
+                $("#prod").css('background-color', 'pink');
+            })
+            $("#customer").mouseover(function () {
+                $("#customer").css('background-color', 'White');
+            })
+            $("#customer").mouseout(function () {
+                $("#customer").css('background-color', 'hotpink');
+            })
+            $("#customer").hover(function () {
+                $("#list").finish().slideDown('fast');
+            })
+            $("#Home,#category").hover(function () {
+                $("#list").finish().slideUp('slow');
+            })
+            $("#category").hover(function () {
+                $("#_category").finish().slideDown('fast');
+            })
+            $("#prod,#customer").hover(function () {
+                $("#_category").finish().slideUp('slow');
+            })
+            $("#prod").hover(function () {
+                $("#_products").finish().slideDown('fast');
+            })
+            $("#category,#customer").hover(function () {
+                $("#_products").finish().slideUp('slow');
+            })
+        })
+    </script>
+}
+
+<body style="background-color:aquamarine">
+    <style>
+        .box {
+            padding: 30px;
+            width: 15px;
+            margin: 25px;
+            background-color: lightgrey;
+            word-spacing: 30px;
+        }
+    </style>
+    <form>
+        <table id="tbldata">
+            <tr>
+                <span>
+                    <th class="box" id="customer">Customer</th>
+                </span>
+                <span>
+                    <th class="box" id="prod"> Product</th>
+                </span>
+
+                <span>
+                    <th class="box" rowspan="1000" id="category" sty>Category</th>
+                </span>
+
+
+            </tr>
+        </table>
+    </form>
+
+
+    <div id="list">
+        <div>@Html.ActionLink("GetAllCustomers", "GetAllCustomers", "User") </div>
+        <br />
+        <div> @Html.ActionLink("Add new Customer ", "AddCustomer", "User")</div>
+    </div>
+    <div id="_category">
+        <br />
+        <div>@Html.ActionLink(" All Categories ", "GetCategoryForUser", "User")</div>
+        <br />
+        <div>@Html.ActionLink("Add To Cart And Calculate Bill", "CategoryDropDown")</div>
+    </div>
+    <div id="_products">
+        <br />
+        <div>@Html.ActionLink("All Products ", "GetAllProducts", "User")</div>
+        <div>@Html.ActionLink("Add New product", "AddProduct", "User")</div>
+        <br />
+    </div>
+
+</body>
+
+<br />
+
+

@@ -1,0 +1,107 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+<br />
+@section  scripts
+{
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#category').mouseover(function () {
+                $('#category').css('background-color', 'grey');
+
+            })
+            $('#category').mouseout(function () {
+                $('#category').css('background-color', 'White');
+            })
+            $('#category').hover(function () {
+                $('#list').finish().slideDown('slow');
+                
+            })
+            $('#category').hover(function () {
+                $('#list2').finish().slideUp('slow');
+            })
+            $('#exit').hover(function () {
+                $('#list2').finish().slideDown('slow');
+            })
+            $('#exit').hover(function () {
+                $('#list').finish().slideUp('slow');
+            })
+
+            
+
+        })
+
+    </script>
+}
+<body>
+
+    <form>
+        <nav>
+            <table>
+                <tr>
+
+                    <span class="box" id="category"> Student Menu</span>
+                    <hr\><hr\>
+                </tr>
+               
+                <tr>
+                    <span class="box" id="exit">About</span>
+                </tr>
+            </table>
+        </nav>
+    </form>
+
+
+
+    <div id="list">
+        <div>
+            @Html.ActionLink("Add new student ", "AddStudent", "Student")
+        </div>
+        <div>
+            @Html.ActionLink("Students list ", "GetAllStudents", "Student")
+
+        </div>
+    </div>
+
+    <div id="list2">
+        <div>
+            @Html.ActionLink("About ", "About", "Home")
+        </div>
+        
+    </div>
+
+</body>
+
+@*<div class="jumbotron">
+        <h1>ASP.NET</h1>
+        <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
+        <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
+    </div>
+
+    <div class="row">
+        <div class="col-md-4">
+            <h2>Getting started</h2>
+            <p>
+                ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
+                enables a clean separation of concerns and gives you full control over markup
+                for enjoyable, agile development.
+            </p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Get more libraries</h2>
+            <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
+        </div>
+        <div class="col-md-4">
+            <h2>Web Hosting</h2>
+            <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
+            <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+        </div>
+    </div>*@

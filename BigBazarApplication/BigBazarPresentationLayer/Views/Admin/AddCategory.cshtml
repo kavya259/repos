@@ -1,0 +1,47 @@
+﻿@model BigBazarPresentationLayer.Models.CategoryModel
+
+@{
+    ViewData["Title"] = "AddCategory";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+
+<h3>Add Category</h3>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="AddCategory">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="form-control" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Add" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to Admin home page</a>
+</div>
+
+<div class="text-left">
+    @*<h2 class="display-3" style="color:darkseagreen">Admin Home</h2>*@
+    @*<br><ins style="color:firebrick">@Html.ActionLink("Back to Admin home page ", "Index", "Home")<br /></ins>*@
+    @*<br><ins style="color:firebrick" >@Html.ActionLink("Add new Category ", "AddCategory", "Admin")<br /></ins>
+        <br> <ins style="color:firebrick"> @Html.ActionLink("view all Categories ", "GetAllCategories", "Admin")<br /></ins>
+        <br><ins style="color:firebrick"> @Html.ActionLink("view all Products ", "GetAllProducts", "Admin")<br /></ins>*@
+
+
+</div>
+
+<div>
+    <br> @Html.ActionLink("Logout ", "Index", "Home")<br />
+
+</div>

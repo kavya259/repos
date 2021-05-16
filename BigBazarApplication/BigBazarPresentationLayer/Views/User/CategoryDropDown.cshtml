@@ -1,0 +1,63 @@
+﻿@*@model BigBazarPresentationLayer.Models.CategoryModel*@
+@model BigBazarEntities.Category
+
+
+@{
+    ViewData["Title"] = "CategoryDropDown";
+}
+<!@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#submit").mouseover(function () {
+                $("#submit").css("background-color", 'green');
+            })
+            $("#submit").mouseout(function () {
+                $("#submit").css("background-color", 'blue');
+            })
+            $("#dropdown").mouseover(function () {
+                $("#dropdown").css("background-color", 'aqua');
+            })
+            $("#dropdown").mouseout(function () {
+                $("#dropdown").css("background-color", 'white');
+            })
+        })
+    </script>
+}
+
+<hr />
+<body style="background-color:lightcyan">
+    <div class="row">
+        <div class="col-md-4">
+            <form asp-action="CategoryDropDown">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                @*@Html.DropDownList("SelectCategory", new SelectList((System.Collections.IEnumerable)ViewData["Category"],"CategoryId","CategoryName"))*@
+                @*(model => model.CategoryId, new SelectList(ViewBag.Categories, "CategoryId", "CategoryName"), "Select a Category")*@
+                @*@Html.DropDownListFor(Model => Model.CategoryId, ViewBag.Category as SelectList, "--select--", new
+        {
+        @class = "form-control",
+        @id = "dropdown"
+        })*@
+                @Html.DropDownListFor(Model => Model.CategoryId, ViewBag.Category as SelectList, "--select--", new  {    @class = "form-control", @id = "dropdown"           })
+
+                <br />
+                <br />
+
+                <div class="form-group">
+                    <input type="submit" id="submit" value="Confirm Category" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to User Home page</a>
+        <br />
+        <a asp-action="GenerateReceipt"> GenerateBill</a>
+    </div>
+</body>
+

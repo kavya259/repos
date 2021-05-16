@@ -1,0 +1,85 @@
+﻿@model IEnumerable<BigBazarEntities.Product>
+
+@{
+    ViewData["Title"] = "SelectedPurchaseItems";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+<body style="background-color:ActiveBorder">
+    <h1>select Items</h1>
+    <p>
+
+        <a asp-action="CategoryDropDown">Back To Category</a>
+    </p>
+    @*<p>
+            <a asp-action="Create">Create New</a>
+        </p>*@
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                        @Html.DisplayNameFor(model => model.ProductId)
+                    </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductName)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductQuantity)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.ProductPrice)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.CategoryId)
+                </th>
+                <th>
+                    <h4 style="color:yellow">Add To Cart</h4>
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach(var item in Model)
+                {
+                <tr>
+                    <td>
+                            @Html.DisplayFor(modelItem => item.ProductId)
+                        </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductName)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductQuantity)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.ProductPrice)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.ActionLink("AddToCart", "AddTocart", new
+                            {
+                            productId = item.ProductId
+                            })
+
+                    </td>
+                    </tr>
+
+                    }
+            </tbody>
+        </table>
+    </body>
+    @*<td>
+            @Html.ActionLink("AddToCart", "AddTocart", new
+                {
+                productId = item.ProductId
+                }) |
+
+        </td>*@
+    <!--<td>
+        <a asp-action="AddToCart" asp-route-id="item.ProductId">Add To Cart</a> |-->
+    @*<a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |
+        <a asp-action="Delete" asp-route-id="@item.ProductId">Delete</a>*@
+    <!--</td>-->

@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.30907.101
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MobileOperatorManagement", "MobileOperatorManagement\MobileOperatorManagement.csproj", "{172A50D2-36BA-4406-975F-22CA87E09F15}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{172A50D2-36BA-4406-975F-22CA87E09F15}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{172A50D2-36BA-4406-975F-22CA87E09F15}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{172A50D2-36BA-4406-975F-22CA87E09F15}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{172A50D2-36BA-4406-975F-22CA87E09F15}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {493B7ECE-B1AE-4886-8D77-227BDD79467C}
+	EndGlobalSection
+EndGlobal

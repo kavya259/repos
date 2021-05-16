@@ -1,0 +1,26 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="GemBox.Spreadsheet" Version="47.0.1129" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.5" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.5">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="PackageManager" Version="1.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.Swagger" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerGen" Version="6.1.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUI" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\StudentEntities\StudentEntities.csproj" />
+    <ProjectReference Include="..\StudentExceptions\StudentExceptions.csproj" />
+  </ItemGroup>
+
+</Project>

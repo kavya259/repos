@@ -1,0 +1,68 @@
+﻿<h2>Delete Customer</h2>
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>Delete Customer</title>
+</head>
+<body>
+    <div>
+        <form action="DeleteCustomer" method="post">
+            <label>Enter Customer ID</label>
+            <input type="number" name="id" id="Id" placeholder="Customer ID" />
+            <p id="errormsg"></p>
+
+            <br />
+            <input type="submit" value="Delete" id="btnDelete" />
+
+
+
+            @*    JQuery validation*@
+
+            <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+            <script>
+                {
+                    $(document).ready(function () {
+                        $('#btnDelete').click(function () {
+                            var csid = $('#Id').val();
+                            if (csid == "") {
+                                $('#errormsg').text("please enter an id");
+                                $('#Id').focus();
+                                return false;
+
+                            }
+                            var conf = confirm("Are you sure you want to delete?");
+                            if (conf == true) {
+                                alert("record deleted successfully");
+                                return true;
+                            }
+                            else {
+                                return false;
+                            }
+
+                        });
+                    });
+
+
+                }
+
+
+            </script>
+            <div>
+                @Html.ActionLink("Customer Home", "Index", "Customer")
+            </div>
+            <div>
+                @Html.ActionLink("Back to Home", "Index", "Home")
+            </div>
+
+            @*    JQuery validation*@
+        </form>
+    </div>
+</body>
+</html>
+@section Scripts
+            {
+    @Scripts.Render("~/bundles/jqueryval")
+}
+

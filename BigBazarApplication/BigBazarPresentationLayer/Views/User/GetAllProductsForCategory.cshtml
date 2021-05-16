@@ -1,0 +1,95 @@
+﻿@*@model IEnumerable<BigBazarPresentationLayer.Models.ProductModel>*@
+@model IEnumerable<BigBazarEntities.Product>
+
+@{
+    ViewData["Title"] = "GetAllProductsForCategory";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+@if(Model == null)
+    {
+    <h2 style="color:royalblue"> No Products Were Added Under This Category</h2>
+    }
+<h1>products </h1>
+
+@*<p>
+        <a asp-action="Create">Create New</a>
+    </p>*@
+<table class="table">
+    <thead>
+        <tr>
+            
+            <th>
+                @Html.DisplayNameFor(model => model.ProductName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductQuantity)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ProductPrice)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Category)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach(var item in Model)
+            {
+            //
+            @*<tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryId)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.CategoryName)
+                    </td>
+                    <td>
+                        <ins>@Html.ActionLink("Delete", "Deletecategory", new
+                            {
+                            categoryId = item.CategoryId
+                            })</ins>
+                    </td>
+                    <td>
+                        <ins>@Html.ActionLink("Add Products", "AddProduct", new
+                            {
+                            categoryId = item.CategoryId
+                            })</ins>
+                    </td>
+
+                    <td>
+                        <ins>@Html.ActionLink("Product List", "GetProductList", new
+                            {
+                            categoryId = item.CategoryId
+                            })</ins>
+                    </td>
+                </tr>*@
+            //
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CategoryId)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductQuantity)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ProductPrice)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Category.CategoryName)
+            </td>
+            <td>
+                <a asp-action="EditProduct" asp-route-id="@item.ProductId">Edit</a> |
+                @*<a asp-action="Details" asp-route-id="@item.ProductId">Details</a> |*@
+                <a asp-action="DeleteProduct" asp-route-id="@item.ProductId">Delete</a>
+            </td>
+        </tr>
+            }
+    </tbody>
+</table>

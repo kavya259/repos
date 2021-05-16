@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Start" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+
+<PropertyGroup>
+    <SourceFolder>..\example</SourceFolder>
+</PropertyGroup>
+
+<Target Name="Start">
+    <CallTarget Target="buildproj"></CallTarget>
+</Target>
+
+<Target Name="buildproj">
+<MSBuild
+    Projects="$(SourceFolder)\example.sln"
+    Properties="Configuration=Release"
+    Targets="Clean;Build"
+    ContinueOnError="false"
+    StopOnFirstFailure="true"/>
+</Target>
+</Project>

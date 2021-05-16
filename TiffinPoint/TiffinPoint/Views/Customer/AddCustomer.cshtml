@@ -1,0 +1,167 @@
+﻿@model TiffinPoint.Models.CustomerModel
+@{
+    ViewBag.Title = "Add new Customer";
+}
+
+<h2>AddCustomer</h2>
+
+
+@using(Html.BeginForm())
+    {
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <form id="myform">
+            <h4 class="center-block">Please fill in the details</h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new
+                {
+                @class = "text-danger"
+                })
+           
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.CustomerName, htmlAttributes: new
+                    {
+                    @class = "control-label col-md-2"
+                    })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.CustomerName,  new
+                   {
+                   htmlAttributes = new
+                       {
+                       @class = "form-control",@id="cusname"
+                       }
+                   })
+                    @Html.ValidationMessageFor(model => model.CustomerName, "", new
+                        {
+                        @class = "text-danger"
+                        })
+
+    
+                    <p id="errormessage"></p>
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Mobile, htmlAttributes: new
+                    {
+                    @class = "control-label col-md-2"
+                    })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Mobile, new
+                        {
+                        htmlAttributes = new
+                            {
+                            @class = "form-control",@id="mobile"
+                            }
+                        })
+                    @Html.ValidationMessageFor(model => model.Mobile, "", new
+                        {
+                        @class = "text-danger"
+                        })
+
+                    <p id="errormsg"></p>
+                  
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.ItemId, htmlAttributes: new
+               {
+               @class = "control-label col-md-2",
+
+               })
+                <div class="col-md-10">
+    
+
+                    @Html.DropDownListFor(model => model.ItemId, new SelectList(ViewBag.ItemIdList, "ItemId"), new
+                   {
+                   @class = "form-control"
+                   })
+
+                    @*@Html.DropDownListFor(model => model.ItemId, new SelectList(ViewBag.ItemNames, "ItemName"), new
+        {
+        @class = "form-control"
+        })*@
+
+                    @*@Html.DropDownListFor(model => model.ItemId, ViewBag.itemIdList as SelectList, new
+        {
+        @class = "form-data"
+        })*@
+                    @Html.ValidationMessageFor(model => model.ItemId, "", new
+                   {
+                   @class = "text-danger"
+
+                   })
+
+
+                  
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" id="btnsubmit" class="btn btn-default" />
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @*    JQuery validation*@
+
+<script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+<script>
+    {
+        $(document).ready(function () {
+            $('#btnsubmit').click(function () {
+                var csname = $('#cusname').val();
+                var cusmobile = $('#mobile').val();
+                if (csname.length==0) {
+                    $('#errormessage').text("Name must be filled");
+                    $('#cusname').focus();
+                    return false;
+                }
+                 if (cusmobile.length ==0) {
+                    $('#errormsg').text("please enter your mobile number");
+                    $('#mobile').focus();
+                    return false;
+                }
+                 if (cusmobile.length > 10 || cusmobile.length < 10) {
+                    $('#errormsg').text("mobile number must have 10 digits");
+                    $('#mobile').focus();
+                    return false;
+                }
+                else {
+                    var conf = confirm("Are you sure you want to submit?");
+                    if (conf == true) {
+                        alert("Thank you");
+                        return true;
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            });
+        });
+
+
+    }
+
+</script>
+
+    @*    JQuery validation*@
+
+
+    }
+<div>
+    @Html.ActionLink("Customer Home", "Index", "Customer")
+</div>
+<div>
+    @Html.ActionLink("Back to Home", "Index", "Home")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

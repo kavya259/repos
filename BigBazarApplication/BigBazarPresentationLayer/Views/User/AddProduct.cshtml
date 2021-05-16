@@ -1,0 +1,101 @@
+﻿@model BigBazarPresentationLayer.Models.ProductModel
+
+@{
+    ViewData["Title"] = "AddProduct";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    }
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#btnclick").click(function () {
+                if ($("#Quantity").val() <= 0) {
+                    alert("Quantity Should Not Be less Than Or Equal to Zero");
+                    return false;
+                }
+                if ($("#Price").val() < 0) {
+                    alert("Price Must Be A Positive Value");
+                    return false;
+                }
+                var data = $("#form").serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/User/AddProduct',
+                    data: data,
+                    success: function (data) {
+                        alert("Product Added Successfully Under Selected Category");
+                        location.reload();
+                    },
+                    error: function (response) {
+                        alert("Something Went Wrong!please try again");
+                    }
+                })
+            })
+            $("#Name").mouseover(function () {
+                $("#Name").css("background-color", 'grey');
+            })
+            $("#Name").mouseout(function () {
+                $("#Name").css("background-color", 'white');
+            })
+            $("#Quantity").mouseover(function () {
+                $("#Quantity").css("background-color", 'grey');
+            })
+            $("#Quantity").mouseout(function () {
+                $("#Quantity").css("background-color", 'white');
+            })
+            $("#Price").mouseover(function () {
+                $("#Price").css("background-color", 'grey');
+            })
+            $("#Price").mouseout(function () {
+                $("#Price").css("background-color", 'white');
+            })
+
+        })
+
+
+    </script>
+}
+
+<h1>AddProduct</h1>
+
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form id="form" asp-action="AddProduct">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="ProductName" class="control-label"></label>
+                <input id="Name" asp-for="ProductName" class="form-control" />
+                <span asp-validation-for="ProductName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label  asp-for="ProductQuantity" class="control-label"></label>
+                <input id="Quantity" asp-for="ProductQuantity" class="form-control" />
+                <span asp-validation-for="ProductQuantity" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ProductPrice" class="control-label"></label>
+                <input id="Price" asp-for="ProductPrice" class="form-control" />
+                <span asp-validation-for="ProductPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryId" class="control-label"></label>
+                <input id="cat" asp-for="CategoryId" class="form-control" />
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+
+
+                @*<select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>*@
+            </div>
+            <div class="form-group">
+                <input type="button" value="Create"  id="btnclick" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back </a>
+</div>
+

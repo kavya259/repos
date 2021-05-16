@@ -1,0 +1,99 @@
+﻿@model BigBazarPresentationLayer.Models.CustomerModel
+
+@{
+    ViewData["Title"] = "EditCustomer";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    @ViewBag.InnerException
+    }
+@section Scripts
+{
+    <script>
+        $(document).ready(function () {
+            $("#btnclick").click(function () {
+
+                if ($("#CustomerName").val().length ==0) {
+                    alert("Please enter customer Name");
+                    return false;
+                }
+
+                var bool = ValidateName($("#CustomerName").val());
+                if (bool == false) {
+                    return false;
+                }
+
+
+                if ($("#PhoneNumber").val().length != 10) {
+                    alert("Mobile number must have only 10 digits");
+                    return false;
+                }
+                if ($('#Email').val().length == 0) {
+                    alert("Please enter the email id");
+                    return false;
+                }
+
+                var data = $("#form").serialize();
+                $.ajax({
+                    type: 'POST',
+                    url: '/User/EditCustomer',
+                    data: data,
+                    success: function (data) {
+                        alert("Updation Successful");
+                        location.reload();
+                    },
+                    error: function (response) {
+                        alert("Something Went Wrong!Try Again Later");
+                    }
+                })
+            })
+        })
+
+        function ValidateName(name) {
+            for (var i = 0; i < name.length; i++) {
+                if (!(name.charAt(i) >= 'a' && name.charAt(i) <= 'z') || !(name.charAt(i) >= 'A' && name.charAt(i) <= 'Z') && name.charAt(i) == ' ') {
+                    alert("Invalid Name");
+                    return false;
+                }
+            }
+        }
+    </script>
+}
+<body style="background-color:gainsboro">
+
+    <h1>EditCustomer</h1>
+
+    <hr />
+    <div class="row">
+        <div class="col-md-4">
+            <form id="form" asp-action="EditCustomer">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <input type="hidden" asp-for="CustomerId" />
+                <div class="form-group">
+                    <label asp-for="CustomerName" class="control-label"></label>
+                    <input id="CustomerName" asp-for="CustomerName" class="form-control" />
+                    <span asp-validation-for="CustomerName" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="Email" class="control-label"></label>
+                    <input id="Email" asp-for="Email" class="form-control" />
+                    <span asp-validation-for="Email" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="PhoneNumber" class="control-label"></label>
+                    <input id="PhoneNumber" asp-for="PhoneNumber" class="form-control" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" id="btnclick" value="Save" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a asp-action="Index">Back to User home</a>
+    </div>
+
+</body>

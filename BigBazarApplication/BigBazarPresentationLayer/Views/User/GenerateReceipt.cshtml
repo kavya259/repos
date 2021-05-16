@@ -1,0 +1,63 @@
+﻿@model BigBazarEntities.Receipt
+
+@{
+    ViewData["Title"] = "GenerateReceipt";
+}
+@if(ViewBag.Error != null)
+    {
+    @ViewBag.Error
+    @ViewBag.InnerException;
+    }
+<h5 style="color:red">Receipt</h5>
+<style>
+    .receipt {
+        background-color: thistle;
+        width: 1500px;
+        padding-bottom: 20px;
+        padding-right: 30px;
+        padding-top: 20px;
+        padding-left: 30px;
+        border: dotted;
+    }
+</style>
+
+<div>
+    <hr />
+    <body class="receipt">
+        <dl class="row">
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.ReceiptDate)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.ReceiptDate)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.TotalBill)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.TotalBill)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.NoOfItems)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.NoOfItems)
+            </dd>
+            <dt class="col-sm-2">
+                @Html.DisplayNameFor(model => model.Customer)
+            </dt>
+            <dd class="col-sm-10">
+                @Html.DisplayFor(model => model.Customer.CustomerName)
+            </dd>
+        </dl>
+    </body>
+</div>
+<h5 style="color:royalblue">Thank You For Visiting BigBazar...Do vist again</h5>
+
+<div>
+    <a style="color:chartreuse" asp-action="CategoryDropDown">Click to go back and select more items</a>
+    <a asp-action="Index">Back to User home</a>
+    <a style="background-color:bisque" asp-action="Index" asp-controller="Home">Logout</a>
+    @*<a asp-action="Edit" asp-route-id="@Model.ReceiptId">Edit</a> |*@
+    @*<a asp-action="Index">Back to List</a>*@
+</div>

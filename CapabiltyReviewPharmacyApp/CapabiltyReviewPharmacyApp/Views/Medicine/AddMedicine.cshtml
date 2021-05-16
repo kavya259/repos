@@ -1,0 +1,151 @@
+﻿@model Entities.Medicine
+
+@{
+    ViewBag.Title = "AddMedicine";
+}
+@if(ViewBag.error != null)
+    {
+    @ViewBag.error
+    }
+
+<h2>AddMedicine</h2>
+
+
+@using (Html.BeginForm()) 
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Medicine</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Name, new
+                    {
+                    htmlAttributes = new
+                        {
+                        @class = "form-control",
+                        @id = "name"
+                        }
+                    })
+                @Html.ValidationMessageFor(model => model.Name, "", new
+                    {
+                    @class = "text-danger"
+                    })
+                <p id="errorname" class="text-danger"></p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Price, new
+                    {
+                    htmlAttributes = new
+                        {
+                        @class = "form-control",
+               @id = "price"
+               }
+                    })
+                @Html.ValidationMessageFor(model => model.Price, "", new
+                    {
+                    @class = "text-danger"
+                    })
+                <p id="errorprice" class="text-danger"></p>
+
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Category, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Category, new { htmlAttributes = new { @class = "form-control",
+               @id = "category"
+               } })
+                @Html.ValidationMessageFor(model => model.Category, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ManufacturingCompany, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @*@Html.EditorFor(model => model.ManufacturingCompany, new { htmlAttributes = new { @class = "form-control" } })*@
+                @Html.DropDownListFor(model=>model.ManufacturingCompany,new SelectList(ViewBag.list,"Name"),"select company",htmlAttributes:new
+               {
+               @class="form-control"
+               })
+                @Html.ValidationMessageFor(model => model.ManufacturingCompany, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.ExpiryDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.ExpiryDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.ExpiryDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="submit" id="btnsubmit" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+}
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.min.js"></script>
+
+<script>
+    {
+        $(document).ready(function () {
+            $('#btnsubmit').click(function () {
+                var medicinename = $('#name').val();
+                var price = $('#price').val();
+                if (medicinename.length == 0) {
+                    $('#errorname').text("Name must be filled");
+                    $('#name').focus();
+                    return false;
+                }
+                if (medicinename.length < 3) {
+                    $('#errorname').text("Name must be atleast 3 charchters");
+                    $('#name').focus();
+                    return false;
+
+                }
+                if (price == "") {
+                    $('#errorprice').text("price must be given");
+                    $('#price').focus();
+                    return false;
+                }
+                if (isNaN(price)) {
+                    $('#errorprice').text("price must be in numbers");
+                    $('#price').focus();
+                    return false;
+                }
+                else {
+                    var conf = conf("Are you sure you want to submit?");
+                    if (conf == true) {
+                        alert("successfully added,thank you");
+                        return true;
+
+                    }
+                    else {
+                        return false;
+                    }
+                }
+            });
+        });
+    }
+</script>
+<div>
+    @Html.ActionLink("Back ", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
